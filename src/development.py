@@ -1,4 +1,4 @@
-from .base import *
+from .settings.base import *
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
