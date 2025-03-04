@@ -57,8 +57,9 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'globador_db', # This is where you put the name of the db file. 
-                 # If one doesn't exist, it will be created at migration time.
+        'NAME': os.path.join(BASE_DIR, 'globador_db.sqlite3'),
+        # 'NAME': 'globador_db', # This is where you put the name of the db file. 
+        # If one doesn't exist, it will be created at migration time.
     }
 }
 
