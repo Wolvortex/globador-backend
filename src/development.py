@@ -7,10 +7,16 @@ from .settings.base import *
 DEBUG = False
 
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1', 'muhammedelassii.pythonanywhere.com'])
+# ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1', 'muhammedelassii.pythonanywhere.com'])
+
+ALLOWED_HOSTS = [
+    "muhammedelassii.pythonanywhere.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://muhammedelassii.pythonanywhere.com",
+    "https://muhammedelassii.pythonanywhere.com",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 ]
@@ -48,26 +54,34 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ###################################################################
 # Database
 
-POSTGRES_NAME='globador'
-POSTGRES_USER='postgres'
-POSTGRES_PASSWORD='admin'
-POSTGRES_HOST='localhost'
-POSTGRES_PORT='5432'
-POSTGRES_DB='globador'
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': POSTGRES_NAME,
-        'USER': POSTGRES_USER,
-        'PASSWORD': POSTGRES_PASSWORD,
-        'HOST': POSTGRES_HOST,
-        'PORT': POSTGRES_PORT,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'globador_db', # This is where you put the name of the db file. 
+                 # If one doesn't exist, it will be created at migration time.
     }
 }
+
+# POSTGRES_NAME='globador'
+# POSTGRES_USER='postgres'
+# POSTGRES_PASSWORD='admin'
+# POSTGRES_HOST='localhost'
+# POSTGRES_PORT='5432'
+# POSTGRES_DB='globador'
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': POSTGRES_NAME,
+#         'USER': POSTGRES_USER,
+#         'PASSWORD': POSTGRES_PASSWORD,
+#         'HOST': POSTGRES_HOST,
+#         'PORT': POSTGRES_PORT,
+#     }
+# }
 ###################################################################
 
-DOMAIN = ('muhammedelassii.pythonanywhere.com')
+DOMAIN = ('https://muhammedelassii.pythonanywhere.com')
 SITE_NAME = ('Globador')
 
 ################################################################
@@ -95,7 +109,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://muhammedelassii.pythonanywhere.com',
+    'https://muhammedelassii.pythonanywhere.com',
     'http://127.0.0.1:8000',  # Replace with your exact development URL
     'https://localhost:8080',  # Include any other trusted URLs using scheme (http:// or https://)
 ]
