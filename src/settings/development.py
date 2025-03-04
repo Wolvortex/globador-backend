@@ -4,7 +4,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 # DEBUG = env.bool('DEBUG', default=True)
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
