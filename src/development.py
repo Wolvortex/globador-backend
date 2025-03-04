@@ -12,6 +12,7 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
+    "muhammedelassii.pythonanywhere.com",
 ]
 
 ####################### DON'T DUPLICATE APP #######################
@@ -96,4 +97,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR.parent, 'media')
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',  # Replace with your exact development URL
     'https://localhost:8080',  # Include any other trusted URLs using scheme (http:// or https://)
+    'muhammedelassii.pythonanywhere.com',
 ]
