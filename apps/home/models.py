@@ -2,9 +2,13 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField  # Import ArrayField for list fields
 from django.core.validators import FileExtensionValidator  # Validator for image files
 from django.utils.translation import gettext as _
+from PIL import Image
+import io
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
 
 def ProductImage_Upload(instance, filename):
-    return "Product/Images/%s.jpg" % (instance.name)
+    return f'products/{instance.name}/{filename}'
 
 # Create your models here.
 class Category(models.Model):
@@ -48,6 +52,36 @@ class Product(models.Model):
     
 
     def save(self, *args, **kwargs):
+        # Check if there is an image being saved
+        if self.image:
+            # Open the uploaded image
+            img = Image.open(self.image)
+            
+            # Convert to RGB if image has transparency (PNG)
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            
+            # Calculate the new dimensions while preserving aspect ratio
+            max_size = (800, 800)  # You can adjust this to your preferred maximum size
+            img.thumbnail(max_size, Image.BICUBIC)  # BICUBIC is a good balance between quality and performance
+            
+            # Create an in-memory file
+            output = io.BytesIO()
+            
+            # Save the image to the in-memory file with optimized quality
+            img.save(output, format='JPEG', quality=85, optimize=True)  # Adjust quality as needed (85 is a good balance)
+            output.seek(0)
+            
+            # Replace the image field with the processed image
+            self.image = InMemoryUploadedFile(
+                output,
+                'ImageField',
+                f"{self.image.name.split('.')[0]}.jpg",
+                'image/jpeg',
+                sys.getsizeof(output),
+                None
+            )
+            
         super(Product, self).save(*args, **kwargs)
 
 
