@@ -62,7 +62,7 @@ class Product(models.Model):
                 img = img.convert('RGB')
             
             # Calculate the new dimensions while preserving aspect ratio
-            max_size = (800, 800)  # You can adjust this to your preferred maximum size
+            max_size = (500, 500)  # You can adjust this to your preferred maximum size
             img.thumbnail(max_size, Image.BICUBIC)  # BICUBIC is a good balance between quality and performance
             
             # Create an in-memory file

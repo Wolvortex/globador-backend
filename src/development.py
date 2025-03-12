@@ -11,12 +11,23 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     "muhammedelassii.pythonanywhere.com",
+    "globador-frontend.vercel.app",
     "localhost",
     "127.0.0.1",
+    "globadorvet",
+    "globadorvet.com",
+    "www.globadorvet.com",
+    "globador.shop",
+    "www.globador.shop",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "https://muhammedelassii.pythonanywhere.com",
+    "https://globador-frontend.vercel.app/",
+    "https://www.globadorvet.com/",
+    "http://www.globadorvet.com/",
+    "https://globador.shop/",
+    "http://globador.shop/",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 ]
@@ -113,4 +124,9 @@ CSRF_TRUSTED_ORIGINS = [
     'https://muhammedelassii.pythonanywhere.com',
     'http://127.0.0.1:8000',  # Replace with your exact development URL
     'https://localhost:8080',  # Include any other trusted URLs using scheme (http:// or https://)
+    'https://globador.shop',
+    'http://globador.shop',
+    'https://www.globadorvet.com',
+    'http://www.globadorvet.com',
+    "https://globador-frontend.vercel.app/",
 ]
